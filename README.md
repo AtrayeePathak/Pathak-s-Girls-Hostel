@@ -100,14 +100,4 @@ mkdir .\\my_project\\public\\images -Force
 Copy-Item 'C:\\Users\\You\\Downloads\\pathaks-logo.png' -Destination '.\\my_project\\public\\images\\pathaks-logo.png' -Force
 ```
 
-**Next recommended improvements**
-- Add proper password hashing (`bcrypt`) and input sanitization.
-- Add server `start` script and `dev` script (nodemon) to `package.json`.
-- Move DB credentials to environment variables and add `.env` support.
-- Add unit / integration tests for critical routes.
 
-**Contact / Contributing**
-- If you want help adding features or cleaning git history, open an issue or ask for help. I'm available to assist with adding hashing, improving structure, or doing a history rewrite safely.
-
-**License**
-- No license file included. Add a license (e.g. MIT) if you plan to share this repository publicly.
