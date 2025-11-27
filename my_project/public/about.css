@@ -1,25 +1,31 @@
-/* General styles */
+ /* Import Modern Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap');
+
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('https://i.ndtvimg.com/i/2015-08/aiims_650x400_51439114354.jpg');
+    /* Background with overlay */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.ndtvimg.com/i/2015-08/aiims_650x400_51439114354.jpg');
     background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax effect */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    color: #333;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
-    flex: 1;
 }
 
-/* Header styles */
+/* --- HEADER (Reverted to Original Style) --- */
 header {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.9); /* Original Transparency */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     padding: 20px 0;
 }
@@ -28,6 +34,9 @@ header h1 {
     margin: 0;
     color: #333;
     font-size: 24px;
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif; /* Kept original font for header to match other pages */
 }
 
 .small-image {
@@ -53,6 +62,7 @@ nav ul li a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
+    font-family: Arial, sans-serif; /* Kept original font for nav */
     transition: color 0.3s ease;
 }
 
@@ -60,84 +70,92 @@ nav ul li a:hover {
     color: #14c43a;
 }
 
-/* About section styles */
-.about-section {
-    padding: 50px 20px;
-    text-align: center;
-    background-color: rgba(200, 220, 220, 0.85);
-    margin: 40px 0;
-    border-radius: 8px;
+/* --- MAIN CONTENT (New Layout + Transparent Background) --- */
+
+/* Card Style with Transparency */
+.about-section, .founder-section-container {
+    /* Using rgba for transparency (0.85 opacity) instead of solid white */
+    background-color: rgba(255, 255, 255, 0.85); 
+    padding: 50px 40px;
+    margin: 50px auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px); /* Adds a nice blur behind the card if supported */
+    max-width: 900px;
 }
 
-.about-section h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
+/* Typography for Headings */
+.about-section h2, .founder-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
     color: #2c3e50;
+    margin-bottom: 25px;
+    text-align: center;
+    position: relative;
+}
+
+/* Decorative line */
+.about-section h2::after, .founder-section h3::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #14c43a;
+    margin: 10px auto 0;
 }
 
 .about-section p {
     color: #333;
-    font-size: 16px;
-    line-height: 1.7;
-    margin: 15px 0;
+    font-size: 17px;
+    line-height: 1.8;
     text-align: justify;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
-/* Founder section styles */
-.founder-section-container {
-    padding: 50px 20px;
-    background-color: rgba(200, 220, 220, 0.85);
-    margin: 40px 0;
-    border-radius: 8px;
 }
 
+/* Founder Section - Side by Side Layout */
 .founder-section {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    text-align: center;
-}
-
-.founder-section h3 {
-    font-size: 26px;
-    color: #2c3e50;
-    margin-bottom: 20px;
-    font-weight: 600;
+    gap: 40px;
+    text-align: left;
 }
 
 .founder-section img {
-    width: 220px;
-    height: 220px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
-    margin-bottom: 25px;
     object-fit: cover;
-    border: 4px solid #333;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 5px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
 }
 
 .founder-section p {
     color: #333;
-    font-size: 15px;
-    line-height: 1.7;
-    max-width: 900px;
-    text-align: justify;
-    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
 }
 
-/* Footer styles */
+/* Responsive Design */
+@media (max-width: 768px) {
+    .founder-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    .about-section, .founder-section-container {
+        padding: 30px 20px;
+        margin: 30px 20px;
+    }
+}
+
+/* --- FOOTER (Reverted to Original Style) --- */
 footer {
-    background-color: rgba(51, 51, 51, 0.9);
+    background-color: rgba(51, 51, 51, 0.9); /* Original Dark Transparency */
     color: #fff;
     text-align: center;
     padding: 15px 0;
-    margin-top: 40px;
+    margin-top: auto; /* Keeps footer at the bottom */
+    font-family: Arial, sans-serif;
     font-size: 14px;
 }
-
-
-  
-
-  
-  

@@ -1,4 +1,4 @@
-/* General styles */
+ /* General styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -16,7 +16,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
-  flex: 1;
+  /* flex: 1;  <-- Removed this from here, as it doesn't work inside the hero wrapper */
 }
 
 header {
@@ -72,6 +72,12 @@ nav ul li a:hover {
   text-align: center;
   padding: 100px 20px;
   background-color: rgba(0, 0, 0, 0.5);
+  /* --- FIX START --- */
+  flex: 1;                 /* Grow to fill empty space */
+  display: flex;           /* Use flexbox to align internal content */
+  flex-direction: column;  /* Stack content vertically */
+  justify-content: center; /* Center text vertically in the Hero section */
+  /* --- FIX END --- */
 }
 
 .hero h2 {
@@ -107,6 +113,5 @@ footer {
   color: #fff;
   text-align: center;
   padding: 15px 0;
-  margin-top: 40px;
+  /* margin-top: 40px; <-- Removed fixed margin, flex layout handles it now */
 }
- 

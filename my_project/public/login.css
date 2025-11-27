@@ -3,9 +3,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url(https://c8.alamy.com/comp/GX1GWK/safety-concept-login-on-digital-background-GX1GWK.jpg);
+    /* Local project background (place image at public/images/login-bg.png) */
+    background-image: url('17973903.jpg');
+    background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     display: flex;
     flex-direction: column;
     min-height: 100vh;

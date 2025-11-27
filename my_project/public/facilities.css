@@ -1,4 +1,4 @@
-/* Global Styles */
+ /* Global Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -15,7 +15,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    flex: 1;
+    /* flex: 1; <-- Removed, this was ineffective here */
 }
 
 /* Header Styles */
@@ -66,7 +66,7 @@ nav ul li a:hover {
     padding: 40px;
     background-color: rgba(129, 199, 204, 0.85);
     border-radius: 8px;
-    margin: 40px 0;
+    margin: 40px 0; /* Keep margin for spacing around the box */
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -96,5 +96,7 @@ footer {
     color: #fff;
     text-align: center;
     padding: 15px 0;
-    margin-top: 40px;
+    /* --- FIX START --- */
+    margin-top: auto; /* This automatically pushes the footer to the bottom */
+    /* --- FIX END --- */
 }
