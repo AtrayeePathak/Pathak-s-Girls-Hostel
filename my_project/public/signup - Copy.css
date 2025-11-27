@@ -1,0 +1,119 @@
+ /* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    background-image: url( sign\ up.jpg)
+}
+
+.container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 10px 20px;
+      }
+
+
+header {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for better readability */
+    padding: 5px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    color: #131313;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    color: #333;
+    text-decoration: none;
+}
+/* Move login and sign up links to the right */
+nav ul li:nth-last-child(1),
+nav ul li:nth-last-child(2) {
+  float: right;
+  margin-right: 20px; /* Add margin to create a gap */
+}
+
+/* Sign-up form styles */
+.sign-up-form {
+    background-color: rgba(255, 255, 255, 0.5); /* Adjust the alpha value (0.5) to make it transparent */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.sign-up-form h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+ 
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    background-color: #089849;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #033106;
+}
+
+/* Footer styles */
+footer {
+    background-color: rgba(51, 51, 51, 0.8);
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-top: 10px;
+}
+.small-image {
+    width: 1.6em; /* Adjust the width to match the size of the heading */
+    height: auto;
+     /* Optional: Add some margin to separate the logo from the text */
+  }
+  nav ul li a:hover {
+    color: #0db92d;
+  }
+  
+  

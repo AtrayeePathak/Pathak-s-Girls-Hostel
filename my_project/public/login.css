@@ -1,44 +1,47 @@
-/* Reset default browser styles */
-body, h1, h2, p, ul, li, button {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 /* General styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
     background-image: url(https://c8.alamy.com/comp/GX1GWK/safety-concept-login-on-digital-background-GX1GWK.jpg);
     background-size: cover;
     background-position: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-nav ul li:nth-last-child(1),
-nav ul li:nth-last-child(2) {
-  float: right;
-}
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 20px;
+    flex: 1;
 }
 
 header {
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for better readability */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 20px 0;
 }
 
 header .container h1 {
-    color: #080808;
+    color: #333;
     margin: 0;
+    font-size: 24px;
+}
+
+.small-image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
 }
 
 nav ul {
     list-style-type: none;
     padding: 0;
-    margin-top: 10px;
+    margin: 15px 0 0 0;
 }
 
 nav ul li {
@@ -46,26 +49,37 @@ nav ul li {
     margin-right: 20px;
 }
 
-nav ul li:last-child {
-    margin-right: 10px;
+nav ul li:nth-last-child(1),
+nav ul li:nth-last-child(2) {
+  float: right;
+  margin-right: 20px;
 }
 
 nav ul li a {
     text-decoration: none;
     color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #14c43a;
 }
 
 .login-form {
-        background-color: rgba(46, 68, 154, 0.374); /* Transparent background */
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        max-width: 400px;
-        margin: 20px auto;
-    }
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 450px;
+    margin: 50px auto;
+}
 
 .login-form h2 {
-    margin-bottom: 20px;
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #2c3e50;
+    font-size: 28px;
 }
 
 .form-group {
@@ -74,7 +88,9 @@ nav ul li a {
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
 }
 
 .form-group input {
@@ -82,45 +98,30 @@ nav ul li a {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    
+    box-sizing: border-box;
 }
 
 button[type="submit"] {
     background-color: #007bff;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    width: 100%;
 }
 
 button[type="submit"]:hover {
-    background-color: #04274b;
+    background-color: #0056b3;
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color:rgba(0, 0, 0, 0.5);
+    background-color: rgba(51, 51, 51, 0.9);
     color: #fff;
     text-align: center;
-    padding: 10px 0;
-    margin: 0;
+    padding: 15px 0;
+    margin-top: 40px;
 }
-
-footer .container {
-    text-align: center;
-}
-
-.small-image {
-    width: 1.6em; /* Adjust the width to match the size of the heading */
-    height: auto;
-     /* Optional: Add some margin to separate the logo from the text */
-  }
-  nav ul li a:hover {
-    color: #14c43a;
-  }
-  /* Facilities Section Styles */
   

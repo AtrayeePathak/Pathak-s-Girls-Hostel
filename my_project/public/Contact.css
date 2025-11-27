@@ -1,65 +1,86 @@
- /* Global Styles */
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
     background-image: url(https://uptownshop.pk/wp-content/uploads/2023/09/istockphoto-1365544413-640x640-1.jpg);
     background-size: cover;
-    
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
+
 .container {
-    width: 80%;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 20px;
+    flex: 1;
 }
 
 /* Header Styles */
 header {
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for better readability */
-    padding: 10px 20px; /* Adjusted padding */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 header h1 {
     margin: 0;
-    color: #131313;
-    margin-left: 20px; /* Adjust margin-left as needed */
+    color: #333;
+    font-size: 24px;
+}
+
+.small-image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
 }
 
 nav ul {
     list-style-type: none;
     padding: 0;
-    margin-left: 20px; /* Adjust margin-left as needed */
+    margin: 15px 0 0 0;
 }
 
 nav ul li {
     display: inline;
-    margin-right: 20px;
-}
-
-nav ul li:last-child {
-    margin-right: 0;
+    margin-right: 25px;
 }
 
 nav ul li a {
     color: #333;
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #0db92d;
 }
 
 /* Contact Section Styles */
 .contact-section {
-    background-color: rgba(228, 236, 236, 0.8); /* Adjust the transparency as needed */
-    padding: 20px;
-    margin-top: 20px;
-    margin-bottom: 70px; /* Increased margin-bottom */
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 100%;
+    background-color: rgba(228, 236, 236, 0.85);
+    padding: 40px;
+    margin: 40px 0;
+    border-radius: 8px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .contact-section h2 {
     margin-top: 0;
+    color: #2c3e50;
+    font-size: 28px;
+}
+
+.contact-section p {
+    color: #333;
+    margin-bottom: 25px;
 }
 
 .form-group {
@@ -68,8 +89,9 @@ nav ul li a {
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     color: #333;
+    font-weight: 500;
 }
 
 .form-group input,
@@ -79,35 +101,29 @@ nav ul li a {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 button[type="submit"] {
-    background-color: #053b75;
+    background-color: #0db92d;
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
+    padding: 12px 25px;
+    border-radius: 5px;
     cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
 }
 
 button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #0a8620;
 }
 
 /* Footer Styles */
 footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(51, 51, 51, 0.9);
     color: #fff;
     text-align: center;
-    padding: 20px 0; /* Increased padding for better spacing */
-    z-index: 999; /* Ensure footer is on top */
+    padding: 15px 0;
+    margin-top: 40px;
 }
-.small-image {
-    width: 1.6em; /* Adjust the width to match the size of the heading */
-    height: auto;
-     /* Optional: Add some margin to separate the logo from the text */
-  }
