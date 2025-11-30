@@ -37,17 +37,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-// Define Feedback schema and model
-const feedbackSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    message: String,
-    timestamp: { type: Date, default: Date.now }
-}, { collection: 'feedback' });
-
-const Feedback = mongoose.model('Feedback', feedbackSchema);
-
-// Connection String (FIXED: Added '/web_tech' so data goes to the right place)
+// Connection String
 const uri = "mongodb+srv://atrayee:atrayee@cluster0.bmurhbr.mongodb.net/web_tech?retryWrites=true&w=majority&appName=Cluster0";
 
 console.log("⏳ Connecting to MongoDB...");
@@ -88,37 +78,47 @@ app.get("/about", (req, res) => {
     res.render('about');
 });
 
-app.get("/feedback", (req, res) => {
-    res.render('feedback');
-});
-
 
 // --- 4. ROUTES (LOGIC) ---
 
-// Handle POST request for registration
+// Handle POST request for registration (Modified to check duplicates)
 app.post("/signup", (req, res) => {
     const { name, email, password } = req.body;
 
-    // Validation
+    // Validation check
     if (!name || !email || !password) {
         return res.send('<script>alert("Please fill in all fields"); window.location.href="/signup";</script>');
     }
 
-    const newUser = new User({
-        name,
-        email,
-        password
-    });
+    // Check if user already exists
+    User.findOne({ email: email })
+        .then(user => {
+            if (user) {
+                // User ALREADY exists
+                console.log(`Duplicate signup attempt: ${email}`);
+                return res.send('<script>alert("You already have an account with this email! Please Login."); window.location.href="/login";</script>');
+            } else {
+                // User is NEW, proceed to save
+                const newUser = new User({
+                    name,
+                    email,
+                    password
+                });
 
-    newUser.save()
-        .then(() => {
-            console.log(`User registered: ${email}`);
-            // Redirect to Login page after success
-            res.redirect("/login");
+                newUser.save()
+                    .then(() => {
+                        console.log(`User registered: ${email}`);
+                        res.send('<script>alert("Registration Successful! Please Login."); window.location.href="/login";</script>');
+                    })
+                    .catch((err) => {
+                        console.error("Error registering user:", err);
+                        res.status(500).send("Error registering user");
+                    });
+            }
         })
-        .catch((err) => {
-            console.error("Error registering user:", err);
-            res.status(500).send("Error registering user");
+        .catch(err => {
+            console.error("Database error:", err);
+            res.status(500).send("Internal Server Error");
         });
 });
 
@@ -147,34 +147,8 @@ app.post("/login", (req, res) => {
         });
 });
 
-// Handle POST request for feedback
-app.post("/feedback", (req, res) => {
-    const { name, email, message } = req.body;
 
-    // Validation
-    if (!name || !email || !message) {
-        return res.send('<script>alert("Please fill in all fields"); window.location.href="/feedback";</script>');
-    }
-
-    const newFeedback = new Feedback({
-        name,
-        email,
-        message
-    });
-
-    newFeedback.save()
-        .then(() => {
-            console.log(`Feedback received from: ${email}`);
-            res.send('<script>alert("Thank you for your feedback!"); window.location.href="/feedback";</script>');
-        })
-        .catch((err) => {
-            console.error("Error saving feedback:", err);
-            res.status(500).send("Error saving feedback");
-        });
-});
-
-
-// Handle 404 errors (Optional but good practice)
+// Handle 404 errors
 app.use((req, res) => {
     res.status(404).send("Page not found");
 });
