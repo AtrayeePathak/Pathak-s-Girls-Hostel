@@ -48,6 +48,7 @@ jobs:
     - name: Update tag in Helm chart
       run: |
         sed -i 's/tag: .*/tag: "${{github.run_id}}"/' my_project/helm/my-project-chart/values.yaml
+        sed -i 's/repository: .*/repository: atrayeepathak\/pathaks-hostel/' my_project/helm/my-project-chart/values.yaml
 
     - name: Commit and push changes
       run: |
