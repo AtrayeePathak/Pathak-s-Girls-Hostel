@@ -7,28 +7,19 @@ const session = require('express-session');
 const app = express();
 
 // --- 1. MIDDLEWARE SETUP ---
-
-// Session middleware
 app.use(session({
     secret: 'abc',
     resave: false,
     saveUninitialized: false
 }));
 
-// Middleware to parse incoming request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Set the view engine to EJS and specify the 'views' directory
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 
 // --- 2. DATABASE SETUP ---
-
-// Define User schema and model
 const userSchema = new mongoose.Schema({
     name: String,
     email: String,
@@ -36,8 +27,17 @@ const userSchema = new mongoose.Schema({
 }, { collection: 'registration' });
 
 const User = mongoose.model('User', userSchema);
+// Define Feedback schema and model
+const feedbackSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    message: String,
+    timestamp: { type: Date, default: Date.now }
+}, { collection: 'feedback' });
 
-// Connection String
+const Feedback = mongoose.model('Feedback', feedbackSchema);
+
+// Connection String (Mobile Hotspot Recommended for UPES Wi-Fi)
 const uri = "mongodb+srv://atrayee:atrayee@cluster0.bmurhbr.mongodb.net/web_tech?retryWrites=true&w=majority&appName=Cluster0";
 
 console.log("⏳ Connecting to MongoDB...");
@@ -78,72 +78,79 @@ app.get("/about", (req, res) => {
     res.render('about');
 });
 
+// Feedback page
+app.get("/feedback", (req, res) => {
+    res.render('feedback');
+});
+
+// Learn More Page (if still present)
+app.get("/learnmore", (req, res) => {
+    res.render('learnmore');
+});
+
 
 // --- 4. ROUTES (LOGIC) ---
 
-// Handle POST request for registration (Modified to check duplicates)
+// Handle Sign Up
 app.post("/signup", (req, res) => {
     const { name, email, password } = req.body;
 
-    // Validation check
     if (!name || !email || !password) {
         return res.send('<script>alert("Please fill in all fields"); window.location.href="/signup";</script>');
     }
 
-    // Check if user already exists
     User.findOne({ email: email })
         .then(user => {
             if (user) {
-                // User ALREADY exists
                 console.log(`Duplicate signup attempt: ${email}`);
                 return res.send('<script>alert("You already have an account with this email! Please Login."); window.location.href="/login";</script>');
             } else {
-                // User is NEW, proceed to save
-                const newUser = new User({
-                    name,
-                    email,
-                    password
-                });
-
+                const newUser = new User({ name, email, password });
                 newUser.save()
                     .then(() => {
                         console.log(`User registered: ${email}`);
                         res.send('<script>alert("Registration Successful! Please Login."); window.location.href="/login";</script>');
                     })
-                    .catch((err) => {
-                        console.error("Error registering user:", err);
-                        res.status(500).send("Error registering user");
-                    });
+                    .catch((err) => res.status(500).send("Error registering user"));
             }
         })
-        .catch(err => {
-            console.error("Database error:", err);
-            res.status(500).send("Internal Server Error");
-        });
+        .catch(err => res.status(500).send("Internal Server Error"));
 });
 
-// Handle POST request for login
+// Handle Login
 app.post("/login", (req, res) => {
     const { email, password } = req.body;
 
-    // Find user in the database
     User.findOne({ email, password })
         .then((user) => {
             if (user) {
-                // User found, save to session
                 req.session.user = user;
                 console.log(`User logged in: ${user.name}`);
-                
-                // Redirect to Home page after success
                 res.redirect("/"); 
             } else {
-                // User not found or invalid credentials
                 res.send('<script>alert("Invalid Email or Password"); window.location.href="/login";</script>');
             }
         })
+        .catch((err) => res.status(500).send("Error logging in"));
+});
+
+// Handle POST request for feedback
+app.post("/feedback", (req, res) => {
+    const { name, email, message } = req.body;
+
+    if (!name || !email || !message) {
+        return res.send('<script>alert("Please fill in all fields"); window.location.href="/feedback";</script>');
+    }
+
+    const newFeedback = new Feedback({ name, email, message });
+    newFeedback.save()
+        .then(() => {
+            console.log(`Feedback received from: ${email}`);
+            res.send('<script>alert("Thank you for your feedback!"); window.location.href="/feedback";</script>');
+        })
         .catch((err) => {
-            console.error("Error logging in:", err);
-            res.status(500).send("Error logging in");
+            console.error("Error saving feedback:", err);
+            res.status(500).send("Error saving feedback");
         });
 });
 
