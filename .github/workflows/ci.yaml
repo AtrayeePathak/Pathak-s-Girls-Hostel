@@ -53,7 +53,6 @@ jobs:
       run: |
         git config --global user.email "atrayee@example.com"
         git config --global user.name "Atrayee Pathak"
-        
-        
+        git add my_project/helm/my-project-chart/values.yaml
         git commit -m "Update tag in Helm chart"
         git push
