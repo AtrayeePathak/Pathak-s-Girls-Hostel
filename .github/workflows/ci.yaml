@@ -6,8 +6,9 @@ on:
     branches:
       - main
     paths-ignore:
-      - 'helm/**'
-      - 'k8s/**'
+      # ⚠️ Updated paths to include 'my_project/'
+      - 'my_project/helm/**'
+      - 'my_project/k8s/**'
       - 'README.md'
 
 jobs:
@@ -31,10 +32,10 @@ jobs:
     - name: Build and Push action
       uses: docker/build-push-action@v6
       with:
-        context: .
-        file: ./Dockerfile
+        # ⚠️ CHANGE: Point to your 'my_project' folder
+        context: ./my_project
+        file: ./my_project/Dockerfile
         push: true
-        # ⚠️ CHANGE: This pushes to YOUR repo with a unique ID every time
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/pathaks-hostel:${{github.run_id}}
 
   # 2. Update Helm Chart with New Image Tag
@@ -50,14 +51,14 @@ jobs:
 
     - name: Update tag in Helm chart
       run: |
-        # ⚠️ CHANGE: Updated path to match YOUR 'my-project-chart' folder
-        sed -i 's/tag: .*/tag: "${{github.run_id}}"/' helm/my-project-chart/values.yaml
+        # ⚠️ CHANGE: Added 'my_project/' to the path
+        sed -i 's/tag: .*/tag: "${{github.run_id}}"/' my_project/helm/my-project-chart/values.yaml
 
     - name: Commit and push changes
       run: |
         git config --global user.email "atrayee@example.com"
         git config --global user.name "Atrayee Pathak"
-        # ⚠️ CHANGE: Ensure this path matches your folder exactly
-        git add helm/my-project-chart/values.yaml
+        # ⚠️ CHANGE: Added 'my_project/' to the path
+        git add my_project/helm/my-project-chart/values.yaml
         git commit -m "Update tag in Helm chart"
         git push
