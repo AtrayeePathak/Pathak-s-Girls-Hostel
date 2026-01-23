@@ -17,6 +17,6 @@ spec:
       containers:
       - name: pathaks-hostel-container
         # This is the image you just pushed to Docker Hub
-        image: atrayeepathak/pathaks-hostel-distroless:{{ .Values.image.tag }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
           - containerPort: 5000 # Updated to match your app.js port
