@@ -33,7 +33,7 @@ jobs:
         context: ./my_project
         file: ./my_project/Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/pathaks-hostel:${{github.run_id}}
+        tags: atrayeepathak/pathaks-hostel:${{github.run_id}}
 
   update-newtag-in-helm-chart:
     runs-on: ubuntu-latest
