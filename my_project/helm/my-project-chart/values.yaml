@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: pathaks-hostel  # ⚠️ Change this to your Docker Hub ID (e.g., atrayee31/pathaks-hostel)
   pullPolicy: IfNotPresent
-  tag: "21288479421"
+  tag: "21298775517"
 
 imagePullSecrets: []
 nameOverride: ""
