@@ -155,6 +155,12 @@ ArgoCD (running inside the EKS cluster) continuously monitors the repository:
 - Rolling updates ensure new Pods are healthy before removing old ones
 - Users experience uninterrupted service during updates
 
+### **DNS Mapping**
+- Custom domain configured to map to the Kubernetes Ingress Controller
+- AWS Route 53 (or equivalent DNS provider) directs traffic to the load balancer
+- Automatic SSL/TLS certificate provisioning for secure HTTPS access
+- Application is accessible via human-readable domain name instead of raw IP addresses
+
 ---
 
 ## 📝 Application Features
