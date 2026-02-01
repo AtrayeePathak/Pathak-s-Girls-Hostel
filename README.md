@@ -82,6 +82,12 @@ ArgoCD (running inside the EKS cluster) continuously monitors the repository:
 
 **Result:** The live application is updated automatically—no `kubectl` commands needed.
 
+### 📊 GitOps Workflow Diagram
+
+![GitOps Workflow - From Local Development to Production](gitops-workflow.png)
+
+*The visual representation shows how a single line of code travels from your local development environment through GitHub Actions (CI), Docker Hub, Helm Charts, and finally to the Kubernetes cluster (AWS EKS) with ArgoCD managing the continuous deployment with zero downtime.*
+
 ---
 
 ## 📂 Project Structure
