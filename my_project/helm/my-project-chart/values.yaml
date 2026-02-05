@@ -31,7 +31,7 @@ ingress:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
   hosts:
-    - host: null  # null allows the AWS LoadBalancer URL to work
+    - host: pathaks-hostel.local  # <--- MUST MATCH HOSTS FILE  # null allows the AWS LoadBalancer URL to work
       paths:
         - path: /
           pathType: Prefix
