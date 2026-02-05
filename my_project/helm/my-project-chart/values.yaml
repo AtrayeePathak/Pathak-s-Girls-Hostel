@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: atrayeepathak/pathaks-hostel
   pullPolicy: Always
-  tag: "21561026889"
+  tag: "21724056935"
 
 imagePullSecrets: []
 nameOverride: ""
